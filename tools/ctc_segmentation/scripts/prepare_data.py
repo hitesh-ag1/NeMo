@@ -21,7 +21,8 @@ from typing import List, Optional
 import regex
 from joblib import Parallel, delayed
 from normalization_helpers import LATIN_TO_RU, RU_ABBREVIATIONS
-from num2words import num2words
+from num_to_words import num_to_word as num2words
+# from num2words import num2words
 from sox import Transformer
 from tqdm import tqdm
 
@@ -49,7 +50,7 @@ parser.add_argument(
     "--language",
     type=str,
     default="en",
-    choices=["en", "ru", "de", "es", 'other'],
+    choices=["en", "ru", "de", "es", "hi", 'other'],
     help='Add target language based on the num2words list of supported languages',
 )
 parser.add_argument(
@@ -168,7 +169,7 @@ def split_text(
     if language == "ru":
         lower_case_unicode = '\u0430-\u04FF'
         upper_case_unicode = '\u0410-\u042F'
-    elif language not in ["ru", "en"]:
+    elif language not in ["ru", "en", "hi"]:
         print(f"Consider using {language} unicode letters for better sentence split.")
 
     # remove space in the middle of the lower case abbreviation to avoid splitting into separate sentences

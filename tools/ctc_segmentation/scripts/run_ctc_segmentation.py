@@ -128,7 +128,9 @@ if __name__ == "__main__":
     index_duration = None
     for path_audio in audio_paths:
         logging.info(f"Processing {path_audio.name}...")
-        transcript_file = os.path.join(data_dir, path_audio.name.replace(".wav", ".txt"))
+        path_audio2 = path_audio.name.replace("audio", "text")
+        transcript_file = os.path.join(data_dir, path_audio2.replace(".wav", ".txt"))
+        # transcript_file = os.path.join(data_dir, path_audio.name.replace(".wav", ".txt"))
         segment_file = os.path.join(
             segments_dir, f"{args.window_len}_" + path_audio.name.replace(".wav", "_segments.txt")
         )
